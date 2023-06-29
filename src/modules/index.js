@@ -11,6 +11,7 @@ import { clearCompleted } from './clearAll.js';
 
 const tasks = [];
 
+//Creates tasks dinamically
 export const addTask = (task) => {
   const toDoList = document.querySelector('.to-do-list');
   const label = document.createElement('label');
@@ -65,10 +66,12 @@ export const updateStatus = (arr) => {
     element.completed = current.completed;
     const check = document.getElementsByClassName('task-check');
     const html = check[current.index];
+    //checkbox updates according to localStorage
     html.checked = current.completed;
   });
 };
 
+//As soon as dom loads create add event listener to clear all button and update data per localstorage
 document.addEventListener('DOMContentLoaded', () => {
   const removeButton = document.querySelector('.clear-completed')
   updateIndex(tasks);
@@ -77,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateStatus(tasks);
 });
 
+//Prevents reloading website when submitting form
 const form = document.querySelector('form');
 form.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
